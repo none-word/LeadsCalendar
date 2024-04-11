@@ -1,0 +1,400 @@
+<!doctype html><html lang=en-us dir=ltr><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="API Documentation - Donation # This document provides an overview of the endpoints available in the Donation Management API.
+Base URL # The base URL for all endpoints is /donation.
+Authentication # All endpoints in this API require authentication. The user must be logged in, and their token must be included in the request headers.
+Headers # Authorization: Bearer YOUR_ACCESS_TOKEN Endpoints # 1. Get All Donations # GET / # Description: Retrieve a list of all donations made by the user."><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:title" content="Api"><meta property="og:description" content="API Documentation - Donation # This document provides an overview of the endpoints available in the Donation Management API.
+Base URL # The base URL for all endpoints is /donation.
+Authentication # All endpoints in this API require authentication. The user must be logged in, and their token must be included in the request headers.
+Headers # Authorization: Bearer YOUR_ACCESS_TOKEN Endpoints # 1. Get All Donations # GET / # Description: Retrieve a list of all donations made by the user."><meta property="og:type" content="article"><meta property="og:url" content="http://localhost:1313/docs/developers/api/"><meta property="article:section" content="docs"><title>Api | My New Hugo Site</title>
+<link rel=manifest href=/manifest.json><link rel=icon href=/favicon.png><link rel=canonical href=http://localhost:1313/docs/developers/api/><link rel=stylesheet href=/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz+OQteg=" crossorigin=anonymous><script defer src=/flexsearch.min.js></script><script defer src=/en.search.min.d5f420af8c67e6e1cd6a7c2c55ef5667d2a1c391afcd0216bc4e151df2702613.js integrity="sha256-1fQgr4xn5uHNanwsVe9WZ9Khw5GvzQIWvE4VHfJwJhM=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/><span>My New Hugo Site</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-42bdfeb3a5ac217167fa90cd0deb95e8 class=toggle>
+<label for=section-42bdfeb3a5ac217167fa90cd0deb95e8 class="flex justify-between"><a role=button>Users</a></label><ul><li><a href=/docs/users/overview/>Overview</a></li><li><a href=/docs/users/key_features/>Key Features</a></li><li><a href=/docs/users/stakeholders/>Stakeholders</a></li></ul></li><li><input type=checkbox id=section-d33147b6ad1235f0c21ff22e69976512 class=toggle checked>
+<label for=section-d33147b6ad1235f0c21ff22e69976512 class="flex justify-between"><a role=button>Developers</a></label><ul><li><a href=/docs/developers/api/ class=active>Api</a></li><li><a href=/docs/developers/architecture/>Architecture</a></li><li><a href=/docs/developers/set_up/>Set up</a></li><li><a href=/docs/developers/technologies/>Technologies</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/svg/menu.svg class=book-icon alt=Menu>
+</label><strong>Api</strong>
+<label for=toc-control><img src=/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#base-url>Base URL</a></li><li><a href=#authentication>Authentication</a><ul><li><a href=#headers>Headers</a></li></ul></li><li><a href=#endpoints>Endpoints</a><ul><li><a href=#1-get-all-donations>1. Get All Donations</a></li><li><a href=#2-make-donation>2. Make Donation</a></li><li><a href=#3-get-admin-donation-message>3. Get Admin Donation Message</a></li><li><a href=#4-update-admin-donation-message>4. Update Admin Donation Message</a></li></ul></li><li><a href=#error-responses>Error Responses</a></li></ul><ul><li><a href=#base-url-1>Base URL</a></li><li><a href=#authentication-1>Authentication</a><ul><li><a href=#headers-1>Headers</a></li></ul></li><li><a href=#endpoints-1>Endpoints</a><ul><li><a href=#1-get-all-elective-courses>1. Get All Elective Courses</a></li><li><a href=#2-get-all-elective-courses-by-admin>2. Get All Elective Courses by Admin</a></li><li><a href=#3-get-booked-elective-courses>3. Get Booked Elective Courses</a></li><li><a href=#4-get-all-elective-requests>4. Get All Elective Requests</a></li><li><a href=#5-create-elective-course>5. Create Elective Course</a></li><li><a href=#6-bulk-create-elective-courses>6. Bulk Create Elective Courses</a></li><li><a href=#7-update-elective-course>7. Update Elective Course</a></li><li><a href=#8-delete-elective-course>8. Delete Elective Course</a></li><li><a href=#9-disconnect-elective-course-request>9. Disconnect Elective Course Request</a></li><li><a href=#10-request-elective-course>10. Request Elective Course</a></li><li><a href=#11-update-elective-request>11. Update Elective Request</a></li></ul></li></ul><ul><li><a href=#base-url-2>Base URL</a></li><li><a href=#authentication-2>Authentication</a><ul><li><a href=#headers-2>Headers</a></li></ul></li><li><a href=#endpoints-2>Endpoints</a><ul><li><a href=#1-get-all-pass-requests>1. Get All Pass Requests</a></li><li><a href=#2-get-all-pass-requests-by-admin>2. Get All Pass Requests by Admin</a></li><li><a href=#3-update-elective-request>3. Update Elective Request</a></li><li><a href=#4-order-pass>4. Order Pass</a></li><li><a href=#5-disconnect-pass-request>5. Disconnect Pass Request</a></li></ul></li></ul><ul><li><a href=#base-url-3>Base URL</a></li><li><a href=#authentication-3>Authentication</a><ul><li><a href=#headers-3>Headers</a></li></ul></li><li><a href=#endpoints-3>Endpoints</a><ul><li><a href=#1-login-alumni>1. Login Alumni</a></li><li><a href=#2-register-alumni-account>2. Register Alumni Account</a></li><li><a href=#3-register-admin-account>3. Register Admin Account</a></li><li><a href=#4-update-alumni-account>4. Update Alumni Account</a></li><li><a href=#5-update-password>5. Update Password</a></li><li><a href=#6-get-current-alumni>6. Get Current Alumni</a></li><li><a href=#7-get-all-registered-alumni>7. Get All Registered Alumni</a></li><li><a href=#8-forgot-password>8. Forgot Password</a></li><li><a href=#9-verify-account>9. Verify Account</a></li><li><a href=#10-confirm-verification>10. Confirm Verification</a></li><li><a href=#11-login-with-sso>11. Login with SSO</a></li><li><a href=#12-sso-token-callback>12. SSO Token Callback</a></li><li><a href=#13-sso-user-callback>13. SSO User Callback</a></li><li><a href=#14-sso-authentication-callback>14. SSO Authentication Callback</a></li></ul></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=api-documentation---donation>API Documentation - Donation
+<a class=anchor href=#api-documentation---donation>#</a></h1><p>This document provides an overview of the endpoints available in the Donation Management API.</p><h2 id=base-url>Base URL
+<a class=anchor href=#base-url>#</a></h2><p>The base URL for all endpoints is <code>/donation</code>.</p><h2 id=authentication>Authentication
+<a class=anchor href=#authentication>#</a></h2><p>All endpoints in this API require authentication. The user must be logged in, and their token must be included in the request headers.</p><h3 id=headers>Headers
+<a class=anchor href=#headers>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>Authorization: Bearer YOUR_ACCESS_TOKEN
+</span></span></span></code></pre></div><h2 id=endpoints>Endpoints
+<a class=anchor href=#endpoints>#</a></h2><h3 id=1-get-all-donations>1. Get All Donations
+<a class=anchor href=#1-get-all-donations>#</a></h3><h4 id=get-><code>GET /</code>
+<a class=anchor href=#get->#</a></h4><p><strong>Description:</strong> Retrieve a list of all donations made by the user.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>[
+</span></span><span style=display:flex><span>  {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;user_id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;created_at&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;user&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;username&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;email&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// ... (more donations)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>]
+</span></span></code></pre></div></li></ul><h3 id=2-make-donation>2. Make Donation
+<a class=anchor href=#2-make-donation>#</a></h3><h4 id=post-><code>POST /</code>
+<a class=anchor href=#post->#</a></h4><p><strong>Description:</strong> Make a new donation.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 201 Created</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;status&#34;</span>: <span style=color:#ae81ff>201</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;detail&#34;</span>: <span style=color:#e6db74>&#34;Donation Successfully created&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;data&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;user_id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;created_at&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;user&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;username&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;email&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><h3 id=3-get-admin-donation-message>3. Get Admin Donation Message
+<a class=anchor href=#3-get-admin-donation-message>#</a></h3><h4 id=get-admin><code>GET /admin</code>
+<a class=anchor href=#get-admin>#</a></h4><p><strong>Description:</strong> Retrieve the latest donation message of type &ldquo;ADMIN&rdquo;.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;user_id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;created_at&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><h3 id=4-update-admin-donation-message>4. Update Admin Donation Message
+<a class=anchor href=#4-update-admin-donation-message>#</a></h3><h4 id=post-admin><code>POST /admin</code>
+<a class=anchor href=#post-admin>#</a></h4><p><strong>Description:</strong> Update the donation message of type &ldquo;ADMIN&rdquo;. If the message does not exist, it will be created.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 202 Accepted</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;status&#34;</span>: <span style=color:#ae81ff>202</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;detail&#34;</span>: <span style=color:#e6db74>&#34;Donation Successfully created&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;data&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;user_id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;created_at&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><h2 id=error-responses>Error Responses
+<a class=anchor href=#error-responses>#</a></h2><ul><li>401 Unauthorized: Missing or invalid authentication token.</li><li>404 Not Found: Resource not found.</li><li>422 Unprocessable Entity: Invalid input or missing required fields.</li><li>500 Internal Server Error: Server-side error.</li></ul><h1 id=api-documentation---elective-courses>API Documentation - Elective Courses
+<a class=anchor href=#api-documentation---elective-courses>#</a></h1><h2 id=base-url-1>Base URL
+<a class=anchor href=#base-url-1>#</a></h2><p>The base URL for all endpoints is <code>/elective_course</code>.</p><h2 id=authentication-1>Authentication
+<a class=anchor href=#authentication-1>#</a></h2><p>All endpoints in this API require authentication. The user must be logged in, and their token must be included in the request headers.</p><h3 id=headers-1>Headers
+<a class=anchor href=#headers-1>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>Authorization: Bearer YOUR_ACCESS_TOKEN
+</span></span></span></code></pre></div><h2 id=endpoints-1>Endpoints
+<a class=anchor href=#endpoints-1>#</a></h2><h3 id=1-get-all-elective-courses>1. Get All Elective Courses
+<a class=anchor href=#1-get-all-elective-courses>#</a></h3><h4 id=get--1><code>GET /</code>
+<a class=anchor href=#get--1>#</a></h4><p><strong>Description:</strong> Retrieve a list of all available elective courses.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>[
+</span></span><span style=display:flex><span>  {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;course_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;instructor_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;mode&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// ... (more elective courses)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>]
+</span></span></code></pre></div></li></ul><h3 id=2-get-all-elective-courses-by-admin>2. Get All Elective Courses by Admin
+<a class=anchor href=#2-get-all-elective-courses-by-admin>#</a></h3><h4 id=get-admin-1><code>GET /admin</code>
+<a class=anchor href=#get-admin-1>#</a></h4><p><strong>Description:</strong> Retrieve a list of all elective courses (admin access).</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>[
+</span></span><span style=display:flex><span>  {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;course_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;instructor_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;mode&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// ... (more elective courses)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>]
+</span></span></code></pre></div></li></ul><h3 id=3-get-booked-elective-courses>3. Get Booked Elective Courses
+<a class=anchor href=#3-get-booked-elective-courses>#</a></h3><h4 id=get-booked><code>GET /booked</code>
+<a class=anchor href=#get-booked>#</a></h4><p><strong>Description:</strong> Retrieve a list of elective courses booked by the user.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>[
+</span></span><span style=display:flex><span>  {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;course_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;instructor_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;mode&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;created_at&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;elective_course&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#75715e>// elective course details
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    }
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// ... (more booked elective courses)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>]
+</span></span></code></pre></div></li></ul><h3 id=4-get-all-elective-requests>4. Get All Elective Requests
+<a class=anchor href=#4-get-all-elective-requests>#</a></h3><h4 id=get-request><code>GET /request</code>
+<a class=anchor href=#get-request>#</a></h4><p><strong>Description:</strong> Retrieve a list of all elective course requests.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>[
+</span></span><span style=display:flex><span>  {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;user&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#75715e>// user details
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    },
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;elective_course&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#75715e>// elective course details
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    },
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;created_at&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// ... (more elective course requests)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>]
+</span></span></code></pre></div></li></ul><h3 id=5-create-elective-course>5. Create Elective Course
+<a class=anchor href=#5-create-elective-course>#</a></h3><h4 id=post--1><code>POST /</code>
+<a class=anchor href=#post--1>#</a></h4><p><strong>Description:</strong> Create a new elective course.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;course_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;instructor_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;mode&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 201 Created</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;course_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;instructor_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;mode&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><h3 id=6-bulk-create-elective-courses>6. Bulk Create Elective Courses
+<a class=anchor href=#6-bulk-create-elective-courses>#</a></h3><h4 id=post-bulk><code>POST /bulk</code>
+<a class=anchor href=#post-bulk>#</a></h4><p><strong>Description:</strong> Bulk create multiple elective courses.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>[
+</span></span><span style=display:flex><span>  {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// elective course details
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  },
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// ... (more elective courses)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>]
+</span></span></code></pre></div></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 201 Created</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;number_added&#34;</span>: <span style=color:#ae81ff>5</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><h3 id=7-update-elective-course>7. Update Elective Course
+<a class=anchor href=#7-update-elective-course>#</a></h3><h4 id=put-><code>PUT /</code>
+<a class=anchor href=#put->#</a></h4><p><strong>Description:</strong> Update an existing elective course.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;course_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;instructor_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;mode&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;course_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;instructor_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;mode&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><h3 id=8-delete-elective-course>8. Delete Elective Course
+<a class=anchor href=#8-delete-elective-course>#</a></h3><h4 id=delete-remove><code>DELETE /remove</code>
+<a class=anchor href=#delete-remove>#</a></h4><p><strong>Description:</strong> Delete an elective course.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;course_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;instructor_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;mode&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><h3 id=9-disconnect-elective-course-request>9. Disconnect Elective Course Request
+<a class=anchor href=#9-disconnect-elective-course-request>#</a></h3><h4 id=delete-><code>DELETE /</code>
+<a class=anchor href=#delete->#</a></h4><p><strong>Description:</strong> Disconnect an elective course request.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;course_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;instructor_name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;mode&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><h3 id=10-request-elective-course>10. Request Elective Course
+<a class=anchor href=#10-request-elective-course>#</a></h3><h4 id=post-request><code>POST /request</code>
+<a class=anchor href=#post-request>#</a></h4><p><strong>Description:</strong> Request an elective course.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;course_id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 201</li></ul><p>Created</p><ul><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;user_id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;course_id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><h3 id=11-update-elective-request>11. Update Elective Request
+<a class=anchor href=#11-update-elective-request>#</a></h3><h4 id=patch-><code>PATCH /</code>
+<a class=anchor href=#patch->#</a></h4><p><strong>Description:</strong> Update an elective course request.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;user&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// user details
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  },
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;elective_course&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// elective course details
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  },
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;created_at&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><h1 id=api-documentation---obtain-pass>API Documentation - Obtain Pass
+<a class=anchor href=#api-documentation---obtain-pass>#</a></h1><h2 id=base-url-2>Base URL
+<a class=anchor href=#base-url-2>#</a></h2><p>The base URL for all endpoints is <code>/request_pass</code>.</p><h2 id=authentication-2>Authentication
+<a class=anchor href=#authentication-2>#</a></h2><p>All endpoints in this API require authentication. The user must be logged in, and their token must be included in the request headers.</p><h3 id=headers-2>Headers
+<a class=anchor href=#headers-2>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>Authorization: Bearer YOUR_ACCESS_TOKEN
+</span></span></span></code></pre></div><h2 id=endpoints-2>Endpoints
+<a class=anchor href=#endpoints-2>#</a></h2><h3 id=1-get-all-pass-requests>1. Get All Pass Requests
+<a class=anchor href=#1-get-all-pass-requests>#</a></h3><h4 id=get--2><code>GET /</code>
+<a class=anchor href=#get--2>#</a></h4><p><strong>Description:</strong> Retrieve a list of all pass requests made by the user.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>[
+</span></span><span style=display:flex><span>  {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;user_id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;requested_date&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;guest_info&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;created_at&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// ... (more pass requests)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>]
+</span></span></code></pre></div></li></ul><h3 id=2-get-all-pass-requests-by-admin>2. Get All Pass Requests by Admin
+<a class=anchor href=#2-get-all-pass-requests-by-admin>#</a></h3><h4 id=get-admin-2><code>GET /admin</code>
+<a class=anchor href=#get-admin-2>#</a></h4><p><strong>Description:</strong> Retrieve a list of all pass requests (admin access).</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>[
+</span></span><span style=display:flex><span>  {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;user&#34;</span>: {
+</span></span><span style=display:flex><span>      <span style=color:#75715e>// user details
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    },
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;requested_date&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;guest_info&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;created_at&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>  },
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// ... (more pass requests)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>]
+</span></span></code></pre></div></li></ul><h3 id=3-update-elective-request>3. Update Elective Request
+<a class=anchor href=#3-update-elective-request>#</a></h3><h4 id=patch--1><code>PATCH /</code>
+<a class=anchor href=#patch--1>#</a></h4><p><strong>Description:</strong> Update an existing pass request.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;user&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// user details
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  },
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;requested_date&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;guest_info&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;created_at&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><h3 id=4-order-pass>4. Order Pass
+<a class=anchor href=#4-order-pass>#</a></h3><h4 id=post--2><code>POST /</code>
+<a class=anchor href=#post--2>#</a></h4><p><strong>Description:</strong> Create a new pass order.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;requested_date&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;guests&#34;</span>: [<span style=color:#e6db74>&#34;string&#34;</span>, <span style=color:#e6db74>&#34;string&#34;</span>]
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 201 Created</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;status&#34;</span>: <span style=color:#ae81ff>201</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;detail&#34;</span>: <span style=color:#e6db74>&#34;Successfully created pass order&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;data&#34;</span>: {
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;user_id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;requested_date&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;guest_info&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;created_at&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><h3 id=5-disconnect-pass-request>5. Disconnect Pass Request
+<a class=anchor href=#5-disconnect-pass-request>#</a></h3><h4 id=delete--1><code>DELETE /</code>
+<a class=anchor href=#delete--1>#</a></h4><p><strong>Description:</strong> Disconnect a pass request.</p><p><strong>Request:</strong></p><ul><li>Headers: <code>Authorization</code></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;user_id&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;requested_date&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;guest_info&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;created_at&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><p>Certainly! Here&rsquo;s the Markdown representation of the API documentation for the provided FastAPI code:</p><h1 id=api-documentation---user-authentication>API Documentation - User Authentication
+<a class=anchor href=#api-documentation---user-authentication>#</a></h1><h2 id=base-url-3>Base URL
+<a class=anchor href=#base-url-3>#</a></h2><p>The base URL for all endpoints is <code>/user</code>.</p><h2 id=authentication-3>Authentication
+<a class=anchor href=#authentication-3>#</a></h2><p>Authentication is required for certain endpoints. The user must be logged in, and their token must be included in the request headers.</p><h3 id=headers-3>Headers
+<a class=anchor href=#headers-3>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-http data-lang=http><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>Authorization: Bearer YOUR_ACCESS_TOKEN
+</span></span></span></code></pre></div><h2 id=endpoints-3>Endpoints
+<a class=anchor href=#endpoints-3>#</a></h2><h3 id=1-login-alumni>1. Login Alumni
+<a class=anchor href=#1-login-alumni>#</a></h3><h4 id=post-login><code>POST /login</code>
+<a class=anchor href=#post-login>#</a></h4><p><strong>Description:</strong> Login for alumni users.</p><p><strong>Request:</strong></p><ul><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;username&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;password&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;access_token&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;token_type&#34;</span>: <span style=color:#e6db74>&#34;bearer&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><h3 id=2-register-alumni-account>2. Register Alumni Account
+<a class=anchor href=#2-register-alumni-account>#</a></h3><h4 id=post-register><code>POST /register</code>
+<a class=anchor href=#post-register>#</a></h4><p><strong>Description:</strong> Register a new alumni account.</p><p><strong>Request:</strong></p><ul><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;email&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;password&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;confirm_password&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 201 Created</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;status&#34;</span>: <span style=color:#ae81ff>201</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;Successfully registered user&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><h3 id=3-register-admin-account>3. Register Admin Account
+<a class=anchor href=#3-register-admin-account>#</a></h3><h4 id=post-register-admin><code>POST /register-admin</code>
+<a class=anchor href=#post-register-admin>#</a></h4><p><strong>Description:</strong> Register a new admin account.</p><p><strong>Request:</strong></p><ul><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;email&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;password&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 201 Created</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// user details
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div></li></ul><h3 id=4-update-alumni-account>4. Update Alumni Account
+<a class=anchor href=#4-update-alumni-account>#</a></h3><h4 id=post-update><code>POST /update</code>
+<a class=anchor href=#post-update>#</a></h4><p><strong>Description:</strong> Update alumni account information.</p><p><strong>Request:</strong></p><ul><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// user details to update
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 201 Created</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// updated user details
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div></li></ul><h3 id=5-update-password>5. Update Password
+<a class=anchor href=#5-update-password>#</a></h3><h4 id=post-update-password><code>POST /update-password</code>
+<a class=anchor href=#post-update-password>#</a></h4><p><strong>Description:</strong> Update alumni account password.</p><p><strong>Request:</strong></p><ul><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;current_password&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;new_password&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 202 Accepted</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;status&#34;</span>: <span style=color:#ae81ff>202</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;Successfully updated password&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><h3 id=6-get-current-alumni>6. Get Current Alumni
+<a class=anchor href=#6-get-current-alumni>#</a></h3><h4 id=get--3><code>GET /</code>
+<a class=anchor href=#get--3>#</a></h4><p><strong>Description:</strong> Retrieve details of the currently logged-in alumni.</p><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// user details
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div></li></ul><h3 id=7-get-all-registered-alumni>7. Get All Registered Alumni
+<a class=anchor href=#7-get-all-registered-alumni>#</a></h3><h4 id=get-all><code>GET /all</code>
+<a class=anchor href=#get-all>#</a></h4><p><strong>Description:</strong> Retrieve details of all registered alumni.</p><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li><li>Content Type: application/json</li><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>[
+</span></span><span style=display:flex><span>  {
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// user details with statistics
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>  },
+</span></span><span style=display:flex><span>  <span style=color:#75715e>// ... (more alumni)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>]
+</span></span></code></pre></div></li></ul><h3 id=8-forgot-password>8. Forgot Password
+<a class=anchor href=#8-forgot-password>#</a></h3><h4 id=post-forgot-password><code>POST /forgot-password</code>
+<a class=anchor href=#post-forgot-password>#</a></h4><p><strong>Description:</strong> Request a password reset for a registered user.</p><p><strong>Request:</strong></p><ul><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;university_email&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li></ul><h3 id=9-verify-account>9. Verify Account
+<a class=anchor href=#9-verify-account>#</a></h3><h4 id=post-verify-account><code>POST /verify-account</code>
+<a class=anchor href=#post-verify-account>#</a></h4><p><strong>Description:</strong> Verify a user&rsquo;s account.</p><p><strong>Request:</strong></p><ul><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;university_email&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li></ul><h3 id=10-confirm-verification>10. Confirm Verification
+<a class=anchor href=#10-confirm-verification>#</a></h3><h4 id=post-confirm_verification><code>POST /confirm_verification</code>
+<a class=anchor href=#post-confirm_verification>#</a></h4><p><strong>Description:</strong> Confirm user verification.</p><p><strong>Request:</strong></p><ul><li>Body:<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=display:flex><span>{
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;email&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;code&#34;</span>: <span style=color:#e6db74>&#34;string&#34;</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div></li></ul><p><strong>Response:</strong></p><ul><li>Status Code: 200 OK</li></ul><h3 id=11-login-with-sso>11. Login with SSO
+<a class=anchor href=#11-login-with-sso>#</a></h3><h4 id=get-login_sso><code>GET /login_sso</code>
+<a class=anchor href=#get-login_sso>#</a></h4><p><strong>Description:</strong> Initiate login with Single Sign-On (SSO).</p><p><strong>Response:</strong></p><ul><li>Redirects to the SSO provider for authentication.</li></ul><h3 id=12-sso-token-callback>12. SSO Token Callback
+<a class=anchor href=#12-sso-token-callback>#</a></h3><h4 id=get-token_sso><code>GET /token_sso</code>
+<a class=anchor href=#get-token_sso>#</a></h4><p><strong>Description:</strong> Callback endpoint for handling SSO token.</p><h3 id=13-sso-user-callback>13. SSO User Callback
+<a class=anchor href=#13-sso-user-callback>#</a></h3><h4 id=get-user_sso><code>GET /user_sso</code>
+<a class=anchor href=#get-user_sso>#</a></h4><p><strong>Description:</strong> Callback endpoint for handling SSO user information.</p><h3 id=14-sso-authentication-callback>14. SSO Authentication Callback
+<a class=anchor href=#14-sso-authentication-callback>#</a></h3><h4 id=get-callback><code>GET /callback</code>
+<a class=anchor href=#get-callback>#</a></h4><p><strong>Description:</strong> Callback endpoint for completing SSO authentication.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#base-url>Base URL</a></li><li><a href=#authentication>Authentication</a><ul><li><a href=#headers>Headers</a></li></ul></li><li><a href=#endpoints>Endpoints</a><ul><li><a href=#1-get-all-donations>1. Get All Donations</a></li><li><a href=#2-make-donation>2. Make Donation</a></li><li><a href=#3-get-admin-donation-message>3. Get Admin Donation Message</a></li><li><a href=#4-update-admin-donation-message>4. Update Admin Donation Message</a></li></ul></li><li><a href=#error-responses>Error Responses</a></li></ul><ul><li><a href=#base-url-1>Base URL</a></li><li><a href=#authentication-1>Authentication</a><ul><li><a href=#headers-1>Headers</a></li></ul></li><li><a href=#endpoints-1>Endpoints</a><ul><li><a href=#1-get-all-elective-courses>1. Get All Elective Courses</a></li><li><a href=#2-get-all-elective-courses-by-admin>2. Get All Elective Courses by Admin</a></li><li><a href=#3-get-booked-elective-courses>3. Get Booked Elective Courses</a></li><li><a href=#4-get-all-elective-requests>4. Get All Elective Requests</a></li><li><a href=#5-create-elective-course>5. Create Elective Course</a></li><li><a href=#6-bulk-create-elective-courses>6. Bulk Create Elective Courses</a></li><li><a href=#7-update-elective-course>7. Update Elective Course</a></li><li><a href=#8-delete-elective-course>8. Delete Elective Course</a></li><li><a href=#9-disconnect-elective-course-request>9. Disconnect Elective Course Request</a></li><li><a href=#10-request-elective-course>10. Request Elective Course</a></li><li><a href=#11-update-elective-request>11. Update Elective Request</a></li></ul></li></ul><ul><li><a href=#base-url-2>Base URL</a></li><li><a href=#authentication-2>Authentication</a><ul><li><a href=#headers-2>Headers</a></li></ul></li><li><a href=#endpoints-2>Endpoints</a><ul><li><a href=#1-get-all-pass-requests>1. Get All Pass Requests</a></li><li><a href=#2-get-all-pass-requests-by-admin>2. Get All Pass Requests by Admin</a></li><li><a href=#3-update-elective-request>3. Update Elective Request</a></li><li><a href=#4-order-pass>4. Order Pass</a></li><li><a href=#5-disconnect-pass-request>5. Disconnect Pass Request</a></li></ul></li></ul><ul><li><a href=#base-url-3>Base URL</a></li><li><a href=#authentication-3>Authentication</a><ul><li><a href=#headers-3>Headers</a></li></ul></li><li><a href=#endpoints-3>Endpoints</a><ul><li><a href=#1-login-alumni>1. Login Alumni</a></li><li><a href=#2-register-alumni-account>2. Register Alumni Account</a></li><li><a href=#3-register-admin-account>3. Register Admin Account</a></li><li><a href=#4-update-alumni-account>4. Update Alumni Account</a></li><li><a href=#5-update-password>5. Update Password</a></li><li><a href=#6-get-current-alumni>6. Get Current Alumni</a></li><li><a href=#7-get-all-registered-alumni>7. Get All Registered Alumni</a></li><li><a href=#8-forgot-password>8. Forgot Password</a></li><li><a href=#9-verify-account>9. Verify Account</a></li><li><a href=#10-confirm-verification>10. Confirm Verification</a></li><li><a href=#11-login-with-sso>11. Login with SSO</a></li><li><a href=#12-sso-token-callback>12. SSO Token Callback</a></li><li><a href=#13-sso-user-callback>13. SSO User Callback</a></li><li><a href=#14-sso-authentication-callback>14. SSO Authentication Callback</a></li></ul></li></ul></nav></div></aside></main></body></html>
