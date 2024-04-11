@@ -3,42 +3,24 @@ title = 'Overview'
 weight = 10
 +++
 
+# Introduction
 
-## Overview
-The goal of this project is to further empower Innopolis University alumni by optimizing and expanding the services offered through the Alumni Portal. The aim is to provide a seamless and efficient experience for alumni to stay connected with the university, participate in events, manage elective course attendance, and request passes for various purposes.
+Welcome to the LeadsCalendar documentation!
 
-## Objectives
+## Overview of LeadsCalendar
 
-1. **Streamlined Complaints Handling:**
-    - Improve the process for submitting customer complaints through the Telegram group mentioned on the website.
-    - Enhance the responsiveness of administrators in addressing complaints promptly.
+LeadsCalendar is a sophisticated web application designed to streamline event creation processes while incorporating seamless payment processing functionalities. By integrating with Google Calendar, PayPal, and Binance Pay APIs, LeadsCalendar empowers users to effortlessly create events and complete payments within a unified platform.
 
-2. **Efficient Users Data Management:**
-    - Enable administrators to manage user requests more effectively by providing clear feedback on acceptance or denial, including reasons for denial.
-    - Implement mechanisms to ensure accurate and secure user data management.
+## Purpose
 
-3. **Enhanced Pass Order System:**
-    - Optimize the Alumni Portal to facilitate easy and quick pass requests for alumni entering the university for different purposes.
-    - Implement features to track and manage pass requests efficiently.
+LeadsCalendar simplifies event creation and payment processing by integrating with Google Calendar, PayPal, and Binance Pay APIs. Users can quickly create events and sync them with their Google Calendar accounts, while prompt payment prompts ensure timely transactions. The application's secure payment handling and confirmation notifications streamline event management, enhancing user experience and efficiency for individuals and organizations.
 
-4. **Improved Elective Courses Participation:**
-    - Enhance the Alumni Portal's capability to handle requests for elective course attendance seamlessly.
-    - Provide alumni with the ability to apply for elective courses with ease, ensuring a user-friendly experience.
+## Target Audience of documentation
 
-## Expected Outcomes
+The documentation is intended for:
 
-1. **Increased Alumni Engagement:**
-    - Boost alumni participation in university events and activities through a more user-friendly portal.
-    - Foster a sense of community and connection among alumni through efficient complaint resolution and communication.
+- **Developers**: Experienced developers who are responsible for integrating APIs into web applications and are familiar with concepts such as authentication, RESTful APIs, and web development frameworks.
 
-2. **Optimized Administrative Processes:**
-    - Reduce administrative workload by streamlining data management processes.
-    - Improve decision-making through better feedback and communication channels.
+- **Software Engineers**: Software engineers who are involved in the development and deployment of web applications and have a strong understanding of programming languages and software architecture.
 
-3. **Efficient Pass Request Handling:**
-    - Minimize delays in processing pass requests, providing alumni with a smoother experience when entering the university.
-    - Enhance security measures related to pass requests for the safety of all stakeholders.
-
-4. **Seamless Elective Course Enrollment:**
-    - Improve the ease of elective course participation for alumni.
-    - Ensure a straightforward process for applying and attending elective courses through the portal.
+- **Technical Enthusiasts**: Individuals with a keen interest in technology and software development who may not have extensive experience but are eager to learn and explore new technologies. This documentation provides a comprehensive guide to help them understand the integration process and experiment with LeadsCalendar.

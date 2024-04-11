@@ -1,48 +1,37 @@
 +++
-title = 'Set up'
+title = 'Getting Started'
+weight = 20
 +++
 
-## Alumni Portal Backend
+# Getting Started
 
-### How to run
+Welcome to LeadsCalendar! This section will guide you through the initial steps to start integrating LeadsCalendar into your web application.
 
-#### Using Python
-1. Clone repository locally or on the server
-2. Open a shell/command line in this folder (better if it was after activating a python virtual env)
-3. Install the needed python packages
-```bash
-    pip install -r requirements.txt
-```
-4. Run the python script:
-```bash
-    python3 main.py
-```
+## Prerequisites
 
-#### Using docker
-1. Download docker locally or on the server
-2. Here the image tag name is `alumni-backend` you can name it as you like
-3. Also the port in docker is 8000 by default and you can map it to anything as you like
+Before you begin, make sure you have the following prerequisites in place:
 
-```bash
-docker build -t alumni-backend
-docker run -p 8000:8000 -d alumni-backend
-```
+- Access to a Google Cloud Console account for setting up Google Calendar API.
+- A PayPal Business account or sandbox credentials for PayPal REST API integration.
+- A Binance account with Binance Pay enabled for Binance Pay API integration.
+- Basic knowledge of web development concepts such as HTTP requests, REST APIs, and OAuth 2.0.
 
+## Installation and Setup Instructions
 
-## Inno-alumni-portal frontend
+Follow these steps to install and set up LeadsCalendar:
 
-### How to run or deploy
-1. Clone repository locally or on the server
-2. Open a shell/command line in this folder
-3. To `install` all packages (local to the repo) using `npm`
-    ```bash
-    npm install
-    ```
-4. To `build` the project for production
-    ```bash
-    npm run build
-    ```
-5. To `start` the project on development
-    ```bash
-    npm start
-    ```
+1. Clone the LeadsCalendar repository from GitHub.
+2. Navigate to the project directory.
+3. Install dependencies using your preferred package manager (e.g., npm install or pip install).
+4. Configure API credentials for Google Calendar, PayPal, and Binance Pay in the application settings.
+5. Start the LeadsCalendar server and ensure it is running without errors.
+
+## Basic Usage Guide
+
+Once LeadsCalendar is set up, you can start integrating it into your web application. Here's a basic usage guide:
+
+1. Include the necessary LeadsCalendar modules or scripts in your application code.
+2. Initialize LeadsCalendar with appropriate configuration settings, including API credentials and callback URLs.
+3. Use LeadsCalendar functions or methods to create events and initiate payments within your application interface.
+4. Handle callback responses from payment gateways and update event statuses accordingly.
+5. Test the integration thoroughly to ensure seamless functionality and error handling.

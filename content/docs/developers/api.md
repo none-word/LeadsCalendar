@@ -2,914 +2,103 @@
 title = 'Api'
 +++
 
-# API Documentation - Donation
+# API Description for Integration
 
-This document provides an overview of the endpoints available in the Donation Management API.
+LeadsCalendar integrates with three main APIs: Google Calendar API, PayPal REST API, and Binance Pay API. Below is a description of each API and its functionalities within the LeadsCalendar application:
 
-## Base URL
+## 1. Google Calendar API:
 
-The base URL for all endpoints is `/donation`.
-
-## Authentication
-
-All endpoints in this API require authentication. The user must be logged in, and their token must be included in the request headers.
-
-### Headers
-
-```http
-Authorization: Bearer YOUR_ACCESS_TOKEN
-```
-
-## Endpoints
-
-### 1. Get All Donations
-
-#### `GET /`
-
-**Description:** Retrieve a list of all donations made by the user.
-
-**Request:**
-- Headers: `Authorization`
-
-**Response:**
-- Status Code: 200 OK
-- Content Type: application/json
-- Body:
-  ```json
-  [
-    {
-      "id": "string",
-      "user_id": "string",
-      "message": "string",
-      "created_at": "string",
-      "user": {
-        "id": "string",
-        "username": "string",
-        "email": "string"
-      }
+- **Description:**
+  - The Google Calendar API allows LeadsCalendar to interact with users' Google Calendar accounts, enabling them to create, update, and delete events programmatically.
+- **Functionalities:**
+  - **Event Management:** Enables the creation, retrieval, updating, and deletion of events on users' Google Calendar.
+  - **Authentication:** Utilizes OAuth 2.0 for user authentication and authorization to access their Google Calendar data securely.
+  - **Real-Time Updates:** Provides real-time updates and notifications for changes made to events, ensuring synchronization between LeadsCalendar and Google Calendar.
+- **Endpoints:**
+  - `GET /events`: Retrieve events from the user's calendar.
+  - `POST /events`: Create a new event on the user's calendar.
+  - `PUT /events/{eventId}`: Update an existing event.
+  - `DELETE /events/{eventId}`: Delete an event from the calendar.
+- **Authentication:**
+  - OAuth 2.0 is used for user authentication and authorization.
+- **Sample Request (Create Event):**
+  ```http
+  POST /events HTTP/1.1
+  Host: www.googleapis.com/calendar/v3
+  Authorization: Bearer {access_token}
+  Content-Type: application/json
+  
+  {
+    "summary": "Sample Event",
+    "start": {
+      "dateTime": "2024-04-11T10:00:00",
+      "timeZone": "America/Los_Angeles"
     },
-    // ... (more donations)
-  ]
-  ```
-
-### 2. Make Donation
-
-#### `POST /`
-
-**Description:** Make a new donation.
-
-**Request:**
-- Headers: `Authorization`
-- Body:
-  ```json
-  {
-    "message": "string"
-  }
-  ```
-
-**Response:**
-- Status Code: 201 Created
-- Content Type: application/json
-- Body:
-  ```json
-  {
-    "status": 201,
-    "detail": "Donation Successfully created",
-    "data": {
-      "id": "string",
-      "user_id": "string",
-      "message": "string",
-      "created_at": "string",
-      "user": {
-        "id": "string",
-        "username": "string",
-        "email": "string"
-      }
+    "end": {
+      "dateTime": "2024-04-11T12:00:00",
+      "timeZone": "America/Los_Angeles"
     }
   }
   ```
 
-### 3. Get Admin Donation Message
+## 2. PayPal REST API:
 
-#### `GET /admin`
-
-**Description:** Retrieve the latest donation message of type "ADMIN".
-
-**Request:**
-- Headers: `Authorization`
-
-**Response:**
-- Status Code: 200 OK
-- Content Type: application/json
-- Body:
-  ```json
+- **Description:**
+  - The PayPal REST API enables LeadsCalendar to process payments securely using PayPal's payment gateway.
+- **Functionalities:**
+  - **Payment Processing:** Allows users to make payments using PayPal's payment methods (e.g., PayPal balance, credit/debit cards).
+  - **Order Management:** Manages orders, captures payments, and retrieves transaction details.
+  - **Webhooks:** Provides webhooks for receiving payment notifications and order updates.
+- **Endpoints:**
+  - `POST /v2/checkout/orders`: Create a new payment order.
+  - `GET /v2/checkout/orders/{orderId}`: Retrieve details of a specific order.
+  - `POST /v2/checkout/orders/{orderId}/capture`: Capture payment for an order.
+  - Webhooks endpoints for receiving payment notifications.
+- **Authentication:**
+  - Requires API credentials (Client ID and Secret) for authentication.
+- **Sample Request (Create Order):**
+  ```http
+  POST /v2/checkout/orders HTTP/1.1
+  Host: api.paypal.com
+  Authorization: Basic {base64_encoded(client_id:client_secret)}
+  Content-Type: application/json
+  
   {
-    "id": "string",
-    "user_id": "string",
-    "message": "string",
-    "created_at": "string"
-  }
-  ```
-
-### 4. Update Admin Donation Message
-
-#### `POST /admin`
-
-**Description:** Update the donation message of type "ADMIN". If the message does not exist, it will be created.
-
-**Request:**
-- Headers: `Authorization`
-- Body:
-  ```json
-  {
-    "message": "string"
-  }
-  ```
-
-**Response:**
-- Status Code: 202 Accepted
-- Content Type: application/json
-- Body:
-  ```json
-  {
-    "status": 202,
-    "detail": "Donation Successfully created",
-    "data": {
-      "id": "string",
-      "user_id": "string",
-      "message": "string",
-      "created_at": "string"
-    }
-  }
-  ```
-
-## Error Responses
-
-- 401 Unauthorized: Missing or invalid authentication token.
-- 404 Not Found: Resource not found.
-- 422 Unprocessable Entity: Invalid input or missing required fields.
-- 500 Internal Server Error: Server-side error.
-
-
-# API Documentation - Elective Courses
-
-## Base URL
-
-The base URL for all endpoints is `/elective_course`.
-
-## Authentication
-
-All endpoints in this API require authentication. The user must be logged in, and their token must be included in the request headers.
-
-### Headers
-
-```http
-Authorization: Bearer YOUR_ACCESS_TOKEN
-```
-
-## Endpoints
-
-### 1. Get All Elective Courses
-
-#### `GET /`
-
-**Description:** Retrieve a list of all available elective courses.
-
-**Request:**
-- Headers: `Authorization`
-
-**Response:**
-- Status Code: 200 OK
-- Content Type: application/json
-- Body:
-  ```json
-  [
-    {
-      "id": "string",
-      "course_name": "string",
-      "instructor_name": "string",
-      "description": "string",
-      "mode": "string"
-    },
-    // ... (more elective courses)
-  ]
-  ```
-
-### 2. Get All Elective Courses by Admin
-
-#### `GET /admin`
-
-**Description:** Retrieve a list of all elective courses (admin access).
-
-**Request:**
-- Headers: `Authorization`
-
-**Response:**
-- Status Code: 200 OK
-- Content Type: application/json
-- Body:
-  ```json
-  [
-    {
-      "id": "string",
-      "course_name": "string",
-      "instructor_name": "string",
-      "description": "string",
-      "mode": "string"
-    },
-    // ... (more elective courses)
-  ]
-  ```
-
-### 3. Get Booked Elective Courses
-
-#### `GET /booked`
-
-**Description:** Retrieve a list of elective courses booked by the user.
-
-**Request:**
-- Headers: `Authorization`
-
-**Response:**
-- Status Code: 200 OK
-- Content Type: application/json
-- Body:
-  ```json
-  [
-    {
-      "id": "string",
-      "course_name": "string",
-      "instructor_name": "string",
-      "description": "string",
-      "mode": "string",
-      "created_at": "string",
-      "elective_course": {
-        // elective course details
+    "intent": "CAPTURE",
+    "purchase_units": [{
+      "amount": {
+        "currency_code": "USD",
+        "value": "1.00"
       }
-    },
-    // ... (more booked elective courses)
-  ]
-  ```
-
-### 4. Get All Elective Requests
-
-#### `GET /request`
-
-**Description:** Retrieve a list of all elective course requests.
-
-**Request:**
-- Headers: `Authorization`
-
-**Response:**
-- Status Code: 200 OK
-- Content Type: application/json
-- Body:
-  ```json
-  [
-    {
-      "id": "string",
-      "user": {
-        // user details
-      },
-      "elective_course": {
-        // elective course details
-      },
-      "status": "string",
-      "created_at": "string"
-    },
-    // ... (more elective course requests)
-  ]
-  ```
-
-### 5. Create Elective Course
-
-#### `POST /`
-
-**Description:** Create a new elective course.
-
-**Request:**
-- Headers: `Authorization`
-- Body:
-  ```json
-  {
-    "course_name": "string",
-    "instructor_name": "string",
-    "description": "string",
-    "mode": "string"
+    }]
   }
   ```
 
-**Response:**
-- Status Code: 201 Created
-- Content Type: application/json
-- Body:
-  ```json
+## 3. Binance Pay API:
+
+- **Description:**
+  - The Binance Pay API facilitates cryptocurrency payments within LeadsCalendar using Binance's payment gateway.
+- **Functionalities:**
+  - **Cryptocurrency Payments:** Allows users to make payments using supported cryptocurrencies (e.g., BTC, ETH, USDT).
+  - **Wallet Order Management:** Manages wallet orders, retrieves payment details, and generates payment URLs.
+  - **Webhooks:** Provides webhooks for receiving payment notifications and order updates.
+- **Endpoints:**
+  - `POST /wallet/order`: Create a new wallet order for cryptocurrency payment.
+  - `GET /wallet/order/{orderId}`: Retrieve details of a specific wallet order.
+  - Webhooks endpoints for receiving payment notifications.
+- **Authentication:**
+  - Requires API key and secret for authentication.
+- **Sample Request (Create Wallet Order):**
+  ```http
+  POST /wallet/order HTTP/1.1
+  Host: api.binance.com
+  X-MBX-APIKEY: {api_key}
+  Content-Type: application/json
+  
   {
-    "id": "string",
-    "course_name": "string",
-    "instructor_name": "string",
-    "description": "string",
-    "mode": "string"
+    "currency": "USDT",
+    "amount": "1.00",
+    "productDetail": "Event Payment",
+    "productId": "EVENT123"
   }
   ```
-
-### 6. Bulk Create Elective Courses
-
-#### `POST /bulk`
-
-**Description:** Bulk create multiple elective courses.
-
-**Request:**
-- Headers: `Authorization`
-- Body:
-  ```json
-  [
-    {
-      // elective course details
-    },
-    // ... (more elective courses)
-  ]
-  ```
-
-**Response:**
-- Status Code: 201 Created
-- Content Type: application/json
-- Body:
-  ```json
-  {
-    "number_added": 5
-  }
-  ```
-
-### 7. Update Elective Course
-
-#### `PUT /`
-
-**Description:** Update an existing elective course.
-
-**Request:**
-- Headers: `Authorization`
-- Body:
-  ```json
-  {
-    "course_name": "string",
-    "instructor_name": "string",
-    "description": "string",
-    "mode": "string"
-  }
-  ```
-
-**Response:**
-- Status Code: 200 OK
-- Content Type: application/json
-- Body:
-  ```json
-  {
-    "id": "string",
-    "course_name": "string",
-    "instructor_name": "string",
-    "description": "string",
-    "mode": "string"
-  }
-  ```
-
-### 8. Delete Elective Course
-
-#### `DELETE /remove`
-
-**Description:** Delete an elective course.
-
-**Request:**
-- Headers: `Authorization`
-
-**Response:**
-- Status Code: 200 OK
-- Content Type: application/json
-- Body:
-  ```json
-  {
-    "id": "string",
-    "course_name": "string",
-    "instructor_name": "string",
-    "description": "string",
-    "mode": "string"
-  }
-  ```
-
-### 9. Disconnect Elective Course Request
-
-#### `DELETE /`
-
-**Description:** Disconnect an elective course request.
-
-**Request:**
-- Headers: `Authorization`
-
-**Response:**
-- Status Code: 200 OK
-- Content Type: application/json
-- Body:
-  ```json
-  {
-    "id": "string",
-    "course_name": "string",
-    "instructor_name": "string",
-    "description": "string",
-    "mode": "string"
-  }
-  ```
-
-### 10. Request Elective Course
-
-#### `POST /request`
-
-**Description:** Request an elective course.
-
-**Request:**
-- Headers: `Authorization`
-- Body:
-  ```json
-  {
-    "course_id": "string"
-  }
-  ```
-
-**Response:**
-- Status Code: 201
-
-Created
-- Content Type: application/json
-- Body:
-  ```json
-  {
-    "id": "string",
-    "user_id": "string",
-    "course_id": "string",
-    "status": "string"
-  }
-  ```
-
-### 11. Update Elective Request
-
-#### `PATCH /`
-
-**Description:** Update an elective course request.
-
-**Request:**
-- Headers: `Authorization`
-- Body:
-  ```json
-  {
-    "status": "string"
-  }
-  ```
-
-**Response:**
-- Status Code: 200 OK
-- Content Type: application/json
-- Body:
-  ```json
-  {
-    "id": "string",
-    "user": {
-      // user details
-    },
-    "elective_course": {
-      // elective course details
-    },
-    "status": "string",
-    "created_at": "string"
-  }
-  ```
-
-# API Documentation - Obtain Pass
-
-## Base URL
-
-The base URL for all endpoints is `/request_pass`.
-
-## Authentication
-
-All endpoints in this API require authentication. The user must be logged in, and their token must be included in the request headers.
-
-### Headers
-
-```http
-Authorization: Bearer YOUR_ACCESS_TOKEN
-```
-
-## Endpoints
-
-### 1. Get All Pass Requests
-
-#### `GET /`
-
-**Description:** Retrieve a list of all pass requests made by the user.
-
-**Request:**
-- Headers: `Authorization`
-
-**Response:**
-- Status Code: 200 OK
-- Content Type: application/json
-- Body:
-  ```json
-  [
-    {
-      "id": "string",
-      "user_id": "string",
-      "description": "string",
-      "requested_date": "string",
-      "guest_info": "string",
-      "created_at": "string"
-    },
-    // ... (more pass requests)
-  ]
-  ```
-
-### 2. Get All Pass Requests by Admin
-
-#### `GET /admin`
-
-**Description:** Retrieve a list of all pass requests (admin access).
-
-**Request:**
-- Headers: `Authorization`
-
-**Response:**
-- Status Code: 200 OK
-- Content Type: application/json
-- Body:
-  ```json
-  [
-    {
-      "id": "string",
-      "user": {
-        // user details
-      },
-      "description": "string",
-      "requested_date": "string",
-      "guest_info": "string",
-      "created_at": "string"
-    },
-    // ... (more pass requests)
-  ]
-  ```
-
-### 3. Update Elective Request
-
-#### `PATCH /`
-
-**Description:** Update an existing pass request.
-
-**Request:**
-- Headers: `Authorization`
-- Body:
-  ```json
-  {
-    "status": "string"
-  }
-  ```
-
-**Response:**
-- Status Code: 200 OK
-- Content Type: application/json
-- Body:
-  ```json
-  {
-    "id": "string",
-    "user": {
-      // user details
-    },
-    "description": "string",
-    "requested_date": "string",
-    "guest_info": "string",
-    "status": "string",
-    "created_at": "string"
-  }
-  ```
-
-### 4. Order Pass
-
-#### `POST /`
-
-**Description:** Create a new pass order.
-
-**Request:**
-- Headers: `Authorization`
-- Body:
-  ```json
-  {
-    "description": "string",
-    "requested_date": "string",
-    "guests": ["string", "string"]
-  }
-  ```
-
-**Response:**
-- Status Code: 201 Created
-- Content Type: application/json
-- Body:
-  ```json
-  {
-    "status": 201,
-    "detail": "Successfully created pass order",
-    "data": {
-      "id": "string",
-      "user_id": "string",
-      "description": "string",
-      "requested_date": "string",
-      "guest_info": "string",
-      "created_at": "string"
-    }
-  }
-  ```
-
-### 5. Disconnect Pass Request
-
-#### `DELETE /`
-
-**Description:** Disconnect a pass request.
-
-**Request:**
-- Headers: `Authorization`
-
-**Response:**
-- Status Code: 200 OK
-- Content Type: application/json
-- Body:
-  ```json
-  {
-    "id": "string",
-    "user_id": "string",
-    "description": "string",
-    "requested_date": "string",
-    "guest_info": "string",
-    "status": "string",
-    "created_at": "string"
-  }
-  ```
-
-Certainly! Here's the Markdown representation of the API documentation for the provided FastAPI code:
-
-# API Documentation - User Authentication
-
-## Base URL
-
-The base URL for all endpoints is `/user`.
-
-## Authentication
-
-Authentication is required for certain endpoints. The user must be logged in, and their token must be included in the request headers.
-
-### Headers
-
-```http
-Authorization: Bearer YOUR_ACCESS_TOKEN
-```
-
-## Endpoints
-
-### 1. Login Alumni
-
-#### `POST /login`
-
-**Description:** Login for alumni users.
-
-**Request:**
-- Body:
-  ```json
-  {
-    "username": "string",
-    "password": "string"
-  }
-  ```
-
-**Response:**
-- Status Code: 200 OK
-- Content Type: application/json
-- Body:
-  ```json
-  {
-    "access_token": "string",
-    "token_type": "bearer"
-  }
-  ```
-
-### 2. Register Alumni Account
-
-#### `POST /register`
-
-**Description:** Register a new alumni account.
-
-**Request:**
-- Body:
-  ```json
-  {
-    "name": "string",
-    "email": "string",
-    "password": "string",
-    "confirm_password": "string"
-  }
-  ```
-
-**Response:**
-- Status Code: 201 Created
-- Content Type: application/json
-- Body:
-  ```json
-  {
-    "status": 201,
-    "message": "Successfully registered user"
-  }
-  ```
-
-### 3. Register Admin Account
-
-#### `POST /register-admin`
-
-**Description:** Register a new admin account.
-
-**Request:**
-- Body:
-  ```json
-  {
-    "name": "string",
-    "email": "string",
-    "password": "string"
-  }
-  ```
-
-**Response:**
-- Status Code: 201 Created
-- Content Type: application/json
-- Body:
-  ```json
-  {
-    // user details
-  }
-  ```
-
-### 4. Update Alumni Account
-
-#### `POST /update`
-
-**Description:** Update alumni account information.
-
-**Request:**
-- Body:
-  ```json
-  {
-    // user details to update
-  }
-  ```
-
-**Response:**
-- Status Code: 201 Created
-- Content Type: application/json
-- Body:
-  ```json
-  {
-    // updated user details
-  }
-  ```
-
-### 5. Update Password
-
-#### `POST /update-password`
-
-**Description:** Update alumni account password.
-
-**Request:**
-- Body:
-  ```json
-  {
-    "current_password": "string",
-    "new_password": "string"
-  }
-  ```
-
-**Response:**
-- Status Code: 202 Accepted
-- Content Type: application/json
-- Body:
-  ```json
-  {
-    "status": 202,
-    "message": "Successfully updated password"
-  }
-  ```
-
-### 6. Get Current Alumni
-
-#### `GET /`
-
-**Description:** Retrieve details of the currently logged-in alumni.
-
-**Response:**
-- Status Code: 200 OK
-- Content Type: application/json
-- Body:
-  ```json
-  {
-    // user details
-  }
-  ```
-
-### 7. Get All Registered Alumni
-
-#### `GET /all`
-
-**Description:** Retrieve details of all registered alumni.
-
-**Response:**
-- Status Code: 200 OK
-- Content Type: application/json
-- Body:
-  ```json
-  [
-    {
-      // user details with statistics
-    },
-    // ... (more alumni)
-  ]
-  ```
-
-### 8. Forgot Password
-
-#### `POST /forgot-password`
-
-**Description:** Request a password reset for a registered user.
-
-**Request:**
-- Body:
-  ```json
-  {
-    "university_email": "string"
-  }
-  ```
-
-**Response:**
-- Status Code: 200 OK
-
-### 9. Verify Account
-
-#### `POST /verify-account`
-
-**Description:** Verify a user's account.
-
-**Request:**
-- Body:
-  ```json
-  {
-    "university_email": "string"
-  }
-  ```
-
-**Response:**
-- Status Code: 200 OK
-
-### 10. Confirm Verification
-
-#### `POST /confirm_verification`
-
-**Description:** Confirm user verification.
-
-**Request:**
-- Body:
-  ```json
-  {
-    "email": "string",
-    "code": "string"
-  }
-  ```
-
-**Response:**
-- Status Code: 200 OK
-
-### 11. Login with SSO
-
-#### `GET /login_sso`
-
-**Description:** Initiate login with Single Sign-On (SSO).
-
-**Response:**
-- Redirects to the SSO provider for authentication.
-
-### 12. SSO Token Callback
-
-#### `GET /token_sso`
-
-**Description:** Callback endpoint for handling SSO token.
-
-### 13. SSO User Callback
-
-#### `GET /user_sso`
-
-**Description:** Callback endpoint for handling SSO user information.
-
-### 14. SSO Authentication Callback
-
-#### `GET /callback`
-
-**Description:** Callback endpoint for completing SSO authentication.
